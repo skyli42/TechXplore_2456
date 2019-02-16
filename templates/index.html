@@ -6,9 +6,11 @@
     <title>Prion Predictor</title>
 </head>
 <body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" type="text/javascript"></script>
 <script>
+    var socket = io();
     function readText(){
+        document.getElementById('paragraph').innerHTML = "";
         letters = "ARNDCEQGHILKMFPSTWYV";
         var value = document.getElementById('genomeInput').value.toUpperCase();
         var return_str = "Your Sequence: ";
@@ -27,10 +29,19 @@
         }
         if (!valid_input){
             return_str = "Invalid Sequence Input"
+            document.getElementById('server_response').innerHTML = "";
+        }
+        else{
+            socket.emit('new sequence', return_str);
         }
         document.getElementById('paragraph').innerHTML = return_str;
         document.getElementById('genomeInput').value = '';
+
     }
+    socket.on('sequence return string' ,function(msg){
+        el = document.getElementById('server_response');
+        el.innerHTML = msg;
+    })
 </script>
 
     <h1>Prion Predictor</h1>
@@ -45,7 +56,6 @@
         Run Prediction
     </button>
     <p id = "paragraph"></p>
-    <p>{{response}}</p>
-
+    <p id = "server_response"></p>
 </body>
 </html>
