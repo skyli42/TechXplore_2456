@@ -4,7 +4,7 @@ body{
     text-align: center;
 }
 
-.button{
+.button {
     background-color: #339933;
     font-family: "Verdana", "sans-serif";
     color: white;
@@ -12,7 +12,7 @@ body{
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    padding: 25px 45px;
+    padding: 22px 42px;
     border: none;
 }
 
