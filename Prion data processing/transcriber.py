@@ -28,10 +28,8 @@ with open('Big.txt', 'r') as file:
             classification = get_classification(line)
             #TODO: Save in a csv file
             with open('data.csv', 'a') as csvfile:
-                line = '%s,%s,%s' % (name, sequence, classification)
-                csvfile.write(line)
-                csvfile.write('\n')
-                csvfile.close()
+                writer = csv.writer(csvfile)
+                writer.writerow([name, sequence, classification])
             print(name, sequence, classification)
 
         counter += 1
