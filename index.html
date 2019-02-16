@@ -6,15 +6,44 @@
     <title>Prion Predictor</title>
 </head>
 <body>
+
+<script>
+    function readText(){
+        letters = "ARNDCEQGHILKMFPSTWYV";
+        var value = document.getElementById('genomeInput').value.toUpperCase();
+        var return_str = "Your Sequence: ";
+        var valid_input = (value.length != 0)
+        for (var i = 0; i < value.length; i++){
+            curr_char = value.substring(i, i+1)
+            if (letters.indexOf(curr_char) == -1){
+                valid_input = false
+                break;
+            } else {
+                if (i % 50 == 0){
+                    return_str += "<br>"
+                }
+                return_str += curr_char
+            }
+        }
+        if (!valid_input){
+            return_str = "Invalid Sequence Input"
+        }
+        document.getElementById('paragraph').innerHTML = return_str;
+        document.getElementById('genomeInput').value = '';
+    }
+</script>
+
     <h1>Prion Predictor</h1>
     <p>Predicts whether given genome sequences are likely to be
     prion-forming sequences</p>
     <br><br>
-    <form>
-      Input Genome Sequence:<br><br>
-      <input type="text" name="sequence">
-    </form>
-    <br><br><br>
-    <button class = "button">Run Prediction(s)</button>
+    Input Genome Sequence:<br><br>
+    <input type= "text" value = "" id = "genomeInput">
+    <br><br>
+    <button class = "button"
+            onclick="readText()">
+        Run Prediction(s)
+    </button>
+    <p id = "paragraph"></p>
 </body>
 </html>
