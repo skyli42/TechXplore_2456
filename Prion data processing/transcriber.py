@@ -20,7 +20,7 @@ with open('Big.txt', 'r') as file:
 
 
     for line in text:
-        if counter == 0:
+        if counter == 1:
             name = get_name(line)
         elif counter == 8:
             sequence = get_sequence(line)
